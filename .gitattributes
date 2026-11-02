@@ -1,0 +1,4 @@
+# Batch-Dateien brauchen Windows-Zeilenenden (CRLF). Git speichert sie deshalb unverändert,
+# damit sie auch beim Einzel-Download von GitHub korrekt bleiben.
+*.bat -text
+*.png binary
