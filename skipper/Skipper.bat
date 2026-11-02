@@ -19,7 +19,7 @@ exit /b
 
 # ================================ EINSTELLUNGEN ================================
 $IntervallMinuten   = 10   # Alle wie viele Minuten Skipper auftaucht (Kommazahlen mit Punkt, z. B. 0.5)
-$AnzeigeSekunden    = 3    # Wie lange er sichtbar bleibt (Ein- und Ausblenden kommen jeweils noch dazu)
+$AnzeigeSekunden    = 1    # Wie lange er sichtbar bleibt (Ein- und Ausblenden kommen jeweils noch dazu)
 $TransparenzProzent = 50   # 0 = voll deckend, 100 = unsichtbar
 # ===============================================================================
 

@@ -2,7 +2,7 @@
 
 ## Skipper-Gag (`skipper/`)
 
-Alle 10 Minuten taucht Skipper halbtransparent an einer zufälligen Stelle des Bildschirms auf, bleibt 3 Sekunden und blendet sich wieder aus. Das Fenster ist komplett durchklickbar, stiehlt nie den Fokus und hat keinen Taskleisteneintrag.
+Alle 10 Minuten taucht Skipper halbtransparent an einer zufälligen Stelle des Bildschirms auf, bleibt 1 Sekunde und blendet sich wieder aus. Das Fenster ist komplett durchklickbar, stiehlt nie den Fokus und hat keinen Taskleisteneintrag.
 
 | Datei | Zweck |
 | --- | --- |
@@ -22,7 +22,7 @@ Alle 10 Minuten taucht Skipper halbtransparent an einer zufälligen Stelle des B
 Oben in `Skipper.bat` im Abschnitt `EINSTELLUNGEN`:
 
 - `$IntervallMinuten` (Standard 10, Kommazahlen mit Punkt, z. B. `0.5` zum Ausprobieren)
-- `$AnzeigeSekunden` (Standard 3)
+- `$AnzeigeSekunden` (Standard 1)
 - `$TransparenzProzent` (Standard 50, 0 = deckend, 100 = unsichtbar)
 
 ### Gut zu wissen
