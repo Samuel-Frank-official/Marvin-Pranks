@@ -7,7 +7,8 @@ Alle 10 Minuten taucht Skipper halbtransparent an einer zufälligen Stelle des B
 | Datei | Zweck |
 | --- | --- |
 | `Skipper.bat` | Startet den Gag (Doppelklick) |
-| `Skipper-Stopp.bat` | Beendet ihn (Doppelklick) |
+| `Skipper.ps1` | Gleiche Funktion als reine PowerShell-Datei (Alternative zur `.bat`) |
+| `Skipper-Stopp.bat` | Beendet ihn (Doppelklick), stoppt beide Varianten |
 | `skipper.png` | Das Bild. Fehlt es, erscheint stattdessen "Du Skipper!" als Text |
 
 ### Benutzung
@@ -25,6 +26,18 @@ Oben in `Skipper.bat` im Abschnitt `EINSTELLUNGEN`:
 - `$AnzeigeSekunden` (Standard 1)
 - `$TransparenzProzent` (Standard 50, 0 = deckend, 100 = unsichtbar)
 - `$HoeheAnteil` (Standard 0.5 = halbe Bildschirmhöhe; 0.25 = ein Viertel, 1.0 = volle Höhe. Breite ergibt sich aus dem Seitenverhältnis)
+
+### PowerShell-Variante (`Skipper.ps1`)
+
+Gleiche Funktion und dieselben Einstellungen wie die `.bat`, nur als reine `.ps1`. Sie startet sich selbst einmal ohne Fenster neu, zeigt also **kein** dauerhaftes Konsolenfenster.
+
+- Starten ohne Fenster (z. B. als Ziel einer Verknüpfung im Autostart):
+  `powershell -NoProfile -WindowStyle Hidden -File "C:\Pfad\zu\Skipper.ps1"`
+- Testen (zeigt ihn sofort einmal, mit Meldungen):
+  `powershell -NoProfile -File "C:\Pfad\zu\Skipper.ps1" test`
+- Beenden: `Skipper-Stopp.bat` (nutzt dieselben Namen, beendet auch die `.ps1`).
+- Falls beim Start eine Meldung zur ExecutionPolicy kommt: einmalig und ohne Admin
+  `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` setzen. Das betrifft nur das Starten von `.ps1`-Dateien.
 
 ### Gut zu wissen
 
