@@ -1,7 +1,7 @@
 <# : Skipper-Gag
 @echo off
 :: SKIPPER-GAG: Doppelklick startet ihn unsichtbar im Hintergrund, alle paar Minuten taucht Skipper kurz auf.
-:: Anpassen: Intervall, Anzeigedauer und Transparenz stehen weiter unten im Abschnitt EINSTELLUNGEN.
+:: Anpassen: Intervall, Anzeigedauer, Transparenz und Größe stehen weiter unten im Abschnitt EINSTELLUNGEN.
 :: Bild: skipper.png in denselben Ordner legen. Fehlt es, erscheint stattdessen der Text "Du Skipper!".
 :: Testen: Eingabeaufforderung im Ordner öffnen und "Skipper.bat test" eingeben, dann kommt er sofort einmal.
 :: Beenden: Skipper-Stopp.bat doppelklicken. Abmelden oder Neustart beendet ihn auch, es gibt keinen Autostart.
@@ -19,8 +19,9 @@ exit /b
 
 # ================================ EINSTELLUNGEN ================================
 $IntervallMinuten   = 10   # Alle wie viele Minuten Skipper auftaucht (Kommazahlen mit Punkt, z. B. 0.5)
-$AnzeigeSekunden    = 3    # Wie lange er sichtbar bleibt (Ein- und Ausblenden kommen jeweils noch dazu)
+$AnzeigeSekunden    = 1    # Wie lange er sichtbar bleibt (Ein- und Ausblenden kommen jeweils noch dazu)
 $TransparenzProzent = 50   # 0 = voll deckend, 100 = unsichtbar
+$HoeheAnteil        = 0.5  # Höhe von Skipper als Anteil der Bildschirmhöhe (0.25 = ein Viertel, 0.5 = die Hälfte, 1.0 = volle Höhe)
 # ===============================================================================
 
 # Ab hier nur ändern, wenn du weißt, was du tust.
@@ -36,6 +37,7 @@ if ($ExecutionContext.SessionState.LanguageMode -ne 'FullLanguage') {
 $IntervallMinuten   = [Math]::Max(0.1, [double]$IntervallMinuten)
 $AnzeigeSekunden    = [Math]::Max(0.5, [double]$AnzeigeSekunden)
 $TransparenzProzent = [Math]::Min(100.0, [Math]::Max(0.0, [double]$TransparenzProzent))
+$HoeheAnteil        = [Math]::Min(1.0, [Math]::Max(0.05, [double]$HoeheAnteil))
 
 # Feste Werte
 $BlendSekunden = 0.7                        # Dauer des sanften Ein- bzw. Ausblendens
@@ -288,7 +290,7 @@ function Zeige-Skipper {
     Schliesse-Fenster
     $faktor     = Get-DpiFaktor
     $arbeit     = [System.Windows.Forms.SystemInformation]::WorkingArea            # Hauptbildschirm ohne Taskleiste, in Pixeln
-    $maxHoehePx = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height / 4
+    $maxHoehePx = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height * $HoeheAnteil
 
     # Inhalt bauen: das Bild, oder ersatzweise den Text
     $inhalt = $null
